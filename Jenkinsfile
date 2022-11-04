@@ -16,6 +16,7 @@ pipeline {
              sh "mvn test"
             }
         }  
+        //commit
         stage('Build Docker Image and Push to Docker Hub') {
             steps {
              sh "printenv"
