@@ -15,8 +15,7 @@ pipeline {
              sh "mvn test"
             }
         }  
-        //commit
-        stage('Build Docker Image and Push to Docker Hub') {
+        stage('Build Docker Image and Push ') {
             steps {
              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
                 sh "printenv"
