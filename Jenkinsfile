@@ -14,16 +14,13 @@ pipeline {
             steps {
              sh "mvn test"
             }
-        }  
-        stage('Build Docker Image and Push ') {
-            steps {
-             withDockerRegistry([credentialsId: "docker-hub", url: ""]){
-                sh "printenv"
-                sh 'docker build -t adnanghazzaal/numeric-app:""$GIT_COMMIT"" .'
-                sh 'docker push adnanghazzaal/numeric-app:""$GIT_COMMIT""'
+            post{
+              always{
+                junit 'target/surefire-reports/*.xml'
+                jacoco execPattern: 'target/jacoco.exec'
               }
             }
-        }   
+        }  
         stage ('Mutation Tests- PIT'){
           steps{
             sh 'mvn org.pitest:pitest-maven:mutationCoverage'
@@ -34,6 +31,15 @@ pipeline {
             }
           }
         }
+        stage('Build Docker Image and Push ') {
+            steps {
+             withDockerRegistry([credentialsId: "docker-hub", url: ""]){
+                sh "printenv"
+                sh 'docker build -t adnanghazzaal/numeric-app:""$GIT_COMMIT"" .'
+                sh 'docker push adnanghazzaal/numeric-app:""$GIT_COMMIT""'
+              }
+            }
+        }   
         stage('Kubernete Deployment - DEV') {
             steps {
              withKubeConfig([credentialsId: "kubeconfig"]) {
