@@ -37,7 +37,7 @@ pipeline {
             sh "mvn clean verify sonar:sonar \
                   -Dsonar.projectKey=numeric-application \
                   -Dsonar.host.url=http://devsecops-demo-adnan.eastus.cloudapp.azure.com:9000"
-                  timeput(time:2, unit:'MINUTES'){
+                  timeout(time:2, unit:'MINUTES'){
                     script{
                       waitForQualityGate abortPipeline: true
                     }
