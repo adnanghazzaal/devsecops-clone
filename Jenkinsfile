@@ -8,7 +8,8 @@ pipeline {
               sh "mvn clean package -DskipTests=true"
               archive 'target/*.jar' 
             }
-        }  
+        }
+  
         stage('Unit Test') {
           
             steps {
@@ -45,7 +46,7 @@ pipeline {
               }
              }
             }
-        )
+        }
         stage('Build Docker Image and Push ') {
             steps {
              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
