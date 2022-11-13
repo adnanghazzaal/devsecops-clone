@@ -40,7 +40,7 @@ pipeline {
                      -Dsonar.host.url=http://devsecops-demo-adnan.eastus.cloudapp.azure.com:9000"
             // }
             // withSonarQubeEnv('SonarQube'){
-                        timeout(time: 2, unit: 'HOUR'){
+                        timeout(time: 2, unit: 'HOURS'){
                           script{
                             waitForQualityGate abortPipeline: true
                         }    
