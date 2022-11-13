@@ -51,25 +51,16 @@ pipeline {
              }
           }
         }
-        //     // sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://devsecops-demo-adnan.eastus.cloudapp.azure.com:9000 \
-        //     //     -Dsonar.login=sqp_9285466cdd966311b4d4438a97fc58343417dcd4"
-        //     }
-        // }
-        // /   stage('SonarQube - SAST') {
-        //               steps {
-        //                 withSonarQubeEnv('SonarQube') {
-        //                   sh "mvn sonar:sonar \
-        //                           -Dsonar.projectKey=numeric-application \
-        //                           -Dsonar.host.url=http://devsecops-demo-adnan.eastus.cloudapp.azure.com:9000"
-        //                 }
-        //                 timeout(time: 2, unit: 'MINUTES') {
-        //                   script {
-        //                     waitForQualityGate abortPipeline: true
-        //                   }
-        //                 }
-        //               }
-        //             }
-  
+        stage('Vulnerability Scan - Docker'){
+          steps{
+            sh "mvn dependency-check:check"
+          }
+          post{
+            always{
+              dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+            }
+          }
+        }
         stage('Build Docker Image and Push ') {
             steps {
              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
