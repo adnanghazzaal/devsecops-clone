@@ -41,9 +41,8 @@ pipeline {
             // }
             // withSonarQubeEnv('SonarQube'){
                         timeout(time: 2, unit: 'HOURS'){
-                          script{
                             waitForQualityGate abortPipeline: true
-                        }    
+                          
                     }
              }
           }
