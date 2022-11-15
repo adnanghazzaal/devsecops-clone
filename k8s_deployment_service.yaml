@@ -15,13 +15,19 @@ spec:
       labels:
         app: devsecops
     spec:
-      serviceAccountName: default  # in real time use a customized Cluster roles or role bindings instead of default
+      volumes:
+      - name: vol
+        emptyDir: {}
+      serviceAccountName: default
       containers:
       - image: replace
         name: devsecops-container
+        volumeMounts:
+        - mountPath: /tmp
+          name: vol
         securityContext:
-          runAsUser: 100
           runAsNonRoot: true
+          runAsUser: 100
           readOnlyRootFilesystem: true
 ---
 apiVersion: v1
