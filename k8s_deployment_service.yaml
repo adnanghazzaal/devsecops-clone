@@ -16,13 +16,13 @@ spec:
         app: devsecops
     spec:
       serviceAccountName: default  # in real time use a customized Cluster roles or role bindings instead of default
-     # readOnlyRootFileSystem: true
       containers:
       - image: replace
         name: devsecops-container
         securityContext:
           runAsUser: 100
           runAsNonRoot: true
+          readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service
