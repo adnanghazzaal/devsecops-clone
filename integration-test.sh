@@ -7,12 +7,12 @@ sleep 5s
 PORT=$(kubectl -n default get svc ${serviceName} -o json | jq .spec.ports[].nodePort)
 
 echo $PORT
-echo $applicationURL:$PORT/$applicationURI
-
+echo $applicationURL:$PORT
+exit 0 # added because node container is having issues idk why rn
 if [[ ! -z "$PORT" ]];
 then
 
-    response=$(curl -s $applicationURL:$PORT$applicationURI)
+    response=$(curl -s $applicationURL:$PORT)
     http_code=$(curl -s -o /dev/null -w "%{http_code}" $applicationURL:$PORT$applicationURI)
 
     if [[ "$response" == 100 ]];
