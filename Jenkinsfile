@@ -6,8 +6,10 @@ pipeline {
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
     imageName = "adnanghazzaal/numeric-app:${GIT_COMMIT}"
-    applicationURL=   "http://20.231.72.164"  
+    applicationURL=   "http://devsecops-demo-adnann.eastus.cloudapp.azure.com"  
     //"http://devsecops-demo.eastus.cloudapp.azure.com"
+    // public ip also added to zap sh gen file 
+
     applicationURI="/increment/99"
   }
 
@@ -140,6 +142,7 @@ pipeline {
         stage('OWASP ZAP - DAST') {
             steps {
           withKubeConfig([credentialsId: 'kubeconfig']){
+            // we have used pipeline syntax to generate the publish HTML report below. so no need to isntall any jenkins plugin for this
             sh 'bash zap.sh'
           }
         }
