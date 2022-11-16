@@ -50,7 +50,7 @@ pipeline {
             withSonarQubeEnv('SonarQube'){
                   sh "mvn clean verify sonar:sonar \
                      -Dsonar.projectKey=numeric-application \
-                     -Dsonar.host.url=http://devsecops-demo-adnan.eastus.cloudapp.azure.com:9000"
+                     -Dsonar.host.url=$applicationURL:9000"
             }
           }
         }
