@@ -13,3 +13,4 @@ def call(String buildStatus = 'STARTED') {
   color = '#ec2805'
   emoji = ':hulk:'
  }
+}
