@@ -156,6 +156,7 @@ pipeline {
         }
       }
  
+    }
    post{
     always{
               junit 'target/surefire-reports/*.xml'
@@ -167,5 +168,4 @@ pipeline {
           // sendNotification currentBuild.result
     }
    }
-    }
 }
