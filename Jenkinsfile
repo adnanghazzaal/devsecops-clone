@@ -150,11 +150,22 @@ pipeline {
         }
 
       } 
-      stage('Testing Slack'){
+      stage ('K8s CIS Benchmarking'){
         steps{
-          sh 'exit 0'
+          parallel(
+            "Master"{
+              sh 'bash kube-bench-master '
+            },
+            "Node"{
+              sh 'bash kube-bench-node'
+            },
+            "etcd"{
+              sh 'bash kube-bench-etcd'
+            }
+          )
         }
       }
+      //  vi /run
  
     }
    post{
