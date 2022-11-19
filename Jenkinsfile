@@ -150,11 +150,11 @@ pipeline {
         }
 
       } 
-      stage ('K8s CIS Benchmarking'){
-        steps{
+      stage('K8s CIS Benchmarking'){
+        steps {
           parallel(
             "Master"{
-              sh 'bash kube-bench-master '
+              sh 'bash kube-bench-master'
             },
             "Node"{
               sh 'bash kube-bench-node'
