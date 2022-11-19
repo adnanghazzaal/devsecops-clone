@@ -20,7 +20,7 @@ pipeline {
       stage('Build Artifact') {
           
             steps {
-              sh "print env"
+              sh "printenv"
               sh "mvn clean package -DskipTests=true"
               archive 'target/*.jar' 
             }
