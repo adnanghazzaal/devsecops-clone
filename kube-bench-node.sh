@@ -1,9 +1,9 @@
 #!/bin/bash
 
-target_score=$(./kube-bench node --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
+target_score=$(bash kube-bench node --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
 
 
-if [[ $target_score -gt 10]];
+if [[ $target_score -gt 10 ]];
 then
    echo 'Failure is high please remedy the fails'
    exit 1;

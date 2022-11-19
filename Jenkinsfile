@@ -152,6 +152,14 @@ pipeline {
         }
 
       } 
+
+      stage ("Do You Want To Push To Production"){
+        steps{
+          timeout(time: 2, unit: 'DAYS'){
+            input 'Do You Want To Push To Prod ?'
+          }
+        }
+      }
       stage ("Kubernetes CIS Benchmark"){
         steps{
           parallel(
