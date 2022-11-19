@@ -11,7 +11,6 @@ pipeline {
     applicationURL=   "http://devsecops-demo-adnann.eastus.cloudapp.azure.com"  
     //"http://devsecops-demo.eastus.cloudapp.azure.com"
     // public ip also added to zap sh gen file 
-
     applicationURI="/increment/99"
   }
 
@@ -163,7 +162,7 @@ pipeline {
               sh "bash kube-bench-node"
             },
             "kube-bench etcd target":{
-              
+
               sh "bash kube-bench-etcd"
             }
           )
