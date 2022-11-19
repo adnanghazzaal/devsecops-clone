@@ -7,7 +7,7 @@ pipeline {
     deploymentName = "devsecops"
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
-    imageName = "adnanghazzaal/numeric-app:${GIT_COMMIT}"
+    imageName = "adnanghazzaal/numeric-app:$GIT_COMMIT"
     applicationURL=   "http://devsecops-demo-adnann.eastus.cloudapp.azure.com"  
     //"http://devsecops-demo.eastus.cloudapp.azure.com"
     // public ip also added to zap sh gen file 
