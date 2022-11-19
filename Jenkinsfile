@@ -125,7 +125,7 @@ pipeline {
                 )
               }
             }
-            stage('Integration Tests - DEV') {
+          stage('Integration Tests - DEV') {
                 steps {
                   script {
                     try {
@@ -150,21 +150,21 @@ pipeline {
         }
 
       } 
-      stage('K8s CIS Benchmarking'){
-        steps {
-          parallel(
-            "Master"{
-              sh 'bash kube-bench-master'
-            },
-            "Node"{
-              sh 'bash kube-bench-node'
-            },
-            "etcd"{
-              sh 'bash kube-bench-etcd'
-            }
-          )
+        stage('K8s CIS Benchmarking') {
+          steps {
+            parallel(
+              "Master":{
+                sh 'bash kube-bench-master'
+              },
+              "Node":{
+                sh 'bash kube-bench-node'
+              },
+              "etcd":{
+                sh 'bash kube-bench-etcd'
+              }
+            )
+          }
         }
-      }
       //  vi /run
  
     }
