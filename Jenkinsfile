@@ -153,7 +153,7 @@ pipeline {
         }
 
       } 
-      stage (Kubernetes CIS Benchmark){
+      stage ("Kubernetes CIS Benchmark"){
         steps{
           parallel(
             "Kube-bench Master":{
