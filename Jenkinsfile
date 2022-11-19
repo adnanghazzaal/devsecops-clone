@@ -152,22 +152,22 @@ pipeline {
         }
 
       } 
-      // stage ("Kubernetes CIS Benchmark"){
-      //   steps{
-      //     parallel(
-      //       "Kube-bench Master":{
-      //         sh "bash kube-bench-master"
-      //       },
-      //       "kube-bench Node":{
-      //         sh "bash kube-bench-node"
-      //       },
-      //       "kube-bench etcd target":{
+      stage ("Kubernetes CIS Benchmark"){
+        steps{
+          parallel(
+            "Kube-bench Master":{
+              sh "bash kube-bench-master.sh"
+            },
+            "kube-bench Node":{
+              sh "bash kube-bench-node.sh"
+            },
+            "kube-bench etcd target":{
 
-      //         sh "bash kube-bench-etcd"
-      //       }
-      //     )
-      //   }
-      // }
+              sh "bash kube-bench-etcd.sh"
+            }
+          )
+        }
+      }
       // stage('Testing Slack'){
       //   steps{
       //     sh 'exit 0'
