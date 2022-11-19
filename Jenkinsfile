@@ -10,7 +10,6 @@ pipeline {
     imageName = "adnanghazzaal/numeric-app:${BUILD_ID}"
     applicationURL=   "http://devsecops-demo-adnann.eastus.cloudapp.azure.com"  
     //"http://devsecops-demo.eastus.cloudapp.azure.com"
-    // public ip also added to zap sh gen file 
     applicationURI="/increment/99"
   }
 
