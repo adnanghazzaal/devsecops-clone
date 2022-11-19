@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target_score=$(./kube-bench run --targets etcd --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
+target_score=$(/kubebench/kube-bench run --targets etcd --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
 
 
 if [[ $target_score -gt 10 ]];

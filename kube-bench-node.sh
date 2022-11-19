@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target_score=$(bash kube-bench node --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
+target_score=$(/kubebench/kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml --json | jq .Totals.total_fail)
 
 
 if [[ $target_score -gt 10 ]];
