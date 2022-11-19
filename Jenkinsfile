@@ -163,6 +163,7 @@ pipeline {
               sh "bash kube-bench-node"
             },
             "kube-bench etcd target":{
+              
               sh "bash kube-bench-etcd"
             }
           )
