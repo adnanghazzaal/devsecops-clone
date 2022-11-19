@@ -7,7 +7,7 @@ pipeline {
     deploymentName = "devsecops"
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
-    imageName = "adnanghazzaal/numeric-app:${GIT_COMMIT}"
+    imageName = "adnanghazzaal/numeric-app:${BUILD_ID}"
     applicationURL=   "http://devsecops-demo-adnann.eastus.cloudapp.azure.com"  
     //"http://devsecops-demo.eastus.cloudapp.azure.com"
     // public ip also added to zap sh gen file 
@@ -88,8 +88,8 @@ pipeline {
             steps {
              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
                 sh "printenv"
-                sh 'sudo docker build -t adnanghazzaal/numeric-app:""$GIT_COMMIT"" .'
-                sh 'docker push adnanghazzaal/numeric-app:""$GIT_COMMIT""'
+                sh 'sudo docker build -t adnanghazzaal/numeric-app:""$BUILD_ID"" .'
+                sh 'docker push adnanghazzaal/numeric-app:""$BUILD_ID""'
               }
             }
         }   
