@@ -8,7 +8,7 @@ PORT=$(kubectl -n default get svc ${serviceName} -o json | jq .spec.ports[].node
 
 echo $PORT
 echo $applicationURL:$PORT
-exit 0 # added because node container is having issues idk why rn
+ # added because node container is having issues idk why rn
 if [[ ! -z "$PORT" ]];
 then
 
