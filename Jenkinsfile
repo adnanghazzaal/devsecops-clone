@@ -175,6 +175,24 @@ pipeline {
           )
         }
       }
+      stage('K8s Deployment -PROD'){
+        steps{
+          parallel(
+            "Deployment":{
+              withKubeConfig([credentialsId: 'kubeconfig']){
+                sh "sed -i s#replace#${imageName}#g' k8s_prod-deployment_service.yaml"
+                sh "kubectl -n prod apply -f k8_prod-deployment_service.yaml"
+              },
+              "Rollout Status":{
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                  sh "bash k8s-prod-deployment-rollout-status.sh"
+                }
+              }
+            }
+             
+          )
+        }
+      }
       // stage('Testing Slack'){
       //   steps{
       //     sh 'exit 0'
