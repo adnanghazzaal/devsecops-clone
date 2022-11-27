@@ -209,7 +209,7 @@ pipeline {
                   throw e
                 }
               }
-          }
+          
         }
       
       // stage('Testing Slack'){
