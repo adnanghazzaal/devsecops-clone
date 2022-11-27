@@ -193,7 +193,7 @@ pipeline {
           )
             }
         }
-        stage{'Integration Test - PROD'}{
+        stage('Integration Test - PROD'){
           steps{
              script{
                 try{
