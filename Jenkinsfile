@@ -193,6 +193,25 @@ pipeline {
           )
             }
         }
+        stage{'Integration Test - PROD'}{
+          steps{
+            try{
+              script{
+                try{
+                  withKubeConfig([credentialsId: 'kubeconfig']){
+                    sh "bash integration-test-PROD.sh"
+                  }
+                  catch(e){
+                     withKubeConfig([credentialsId: 'kubeconfig']){
+                     sh "kubectl -n prod rollout undo ${deploymentName}"
+                     }
+                  }
+                  throw e
+                }
+              }
+            }
+          }
+        }
       
       // stage('Testing Slack'){
       //   steps{
