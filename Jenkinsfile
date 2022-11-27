@@ -195,12 +195,12 @@ pipeline {
         }
         stage{'Integration Test - PROD'}{
           steps{
-            try{
-              script{
+             script{
                 try{
                   withKubeConfig([credentialsId: 'kubeconfig']){
                     sh "bash integration-test-PROD.sh"
                   }
+                }
                   catch(e){
                      withKubeConfig([credentialsId: 'kubeconfig']){
                      sh "kubectl -n prod rollout undo ${deploymentName}"
@@ -209,7 +209,6 @@ pipeline {
                   throw e
                 }
               }
-            }
           }
         }
       
