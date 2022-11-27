@@ -200,13 +200,12 @@ pipeline {
                   withKubeConfig([credentialsId: 'kubeconfig']){
                     sh "bash integration-test-PROD.sh"
                   }
-                }
-                  catch(e){
+                }catch(e){
                      withKubeConfig([credentialsId: 'kubeconfig']){
-                     sh "kubectl -n prod rollout undo ${deploymentName}"
+                     sh "kubectl -n prod rollout undo deploy ${deploymentName}"
                      }
-                  }
                   throw e
+                  }
                 }
               }
           
